@@ -118,7 +118,12 @@ let intervalId = interval();
 table.querySelector('.td-with-arrow-up').addEventListener('click', () => {
   clearInterval(intervalId);
   document.querySelector('.td-with-arrow-up').classList.toggle('td-with-arrow-down');
-  const sortedTrs = sortTrs(window.attr);
+  let sortedTrs;
+  if (window.attr) {
+    sortedTrs = sortTrs(window.attr);
+  } else {
+    sortedTrs = sortTrs(dataAttr[0]);
+  }
   table.innerHTML = '';
   sortedTrs.forEach(el => table.appendChild(el));
   intervalId = interval();
